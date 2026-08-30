@@ -23,10 +23,10 @@ I am currently exploring **AI workflow consulting**, **personal AI systems**, an
 <table>
   <tr>
     <td width="50%" valign="top">
-      <a href="https://github.com/keer-d/jieyuhua-extension"><img src="./assets/fluentloop-studio.png" alt="FluentLoop Study Studio" width="100%"></a><br>
+      <a href="https://github.com/keer-d/fluentloop"><img src="./assets/fluentloop-cover.png" alt="FluentLoop personal AI learning system" width="100%"></a><br>
       <b>FluentLoop</b><br>
       <sub>A local-first Chrome extension that turns webpages and video subtitles into a personal language-learning loop.</sub><br><br>
-      <sub><a href="https://github.com/keer-d/jieyuhua-extension">Repository</a> · <a href="https://www.youtube.com/watch?v=Z0oLShLFesw">Watch demo</a></sub>
+      <sub><a href="https://github.com/keer-d/fluentloop">Repository</a> · <a href="https://www.youtube.com/watch?v=Z0oLShLFesw">Watch demo</a></sub>
     </td>
     <td width="50%" valign="top">
       <a href="https://www.youtube.com/watch?v=DE7pMZPA0jU"><img src="./assets/lovable-geo-dashboard.png" alt="Lovable GEO experiment dashboard" width="100%"></a><br>
