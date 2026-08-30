@@ -1,4 +1,4 @@
-# Keer Deng / 邓可而
+# Keer Dean
 
 <p>
   <a href="https://studiokeer.com"><img alt="Portfolio" src="https://img.shields.io/badge/StudioKeer-Portfolio-17140f?style=flat-square"></a>
