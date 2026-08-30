@@ -35,17 +35,21 @@ I am currently exploring **AI workflow consulting**, **personal AI systems**, an
       <sub><a href="https://github.com/keer-d/career-os">Repository</a> · Synthetic examples, real system design</sub>
     </td>
   </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="https://github.com/keer-d/leadgen-framework"><img src="./assets/leadgen-framework-cover.png" alt="LeadGen evidence-first operating framework" width="100%"></a><br>
+      <b>LeadGen Framework</b><br>
+      <sub>A cross-industry framework for turning scattered channels into evidence-led discovery, qualification, review, and learning.</sub><br><br>
+      <sub><a href="https://github.com/keer-d/leadgen-framework">Repository</a> · Generic templates and synthetic examples</sub>
+    </td>
+    <td width="50%" valign="top">
+      <a href="https://github.com/keer-d/lovable-geo-experiment"><img src="./assets/lovable-geo-dashboard.png" alt="Lovable GEO experiment dashboard" width="100%"></a><br>
+      <b>Lovable GEO Experiment</b><br>
+      <sub>A reproducible study of how persona and prompt context change brand visibility across 108 AI observations.</sub><br><br>
+      <sub><a href="https://github.com/keer-d/lovable-geo-experiment">Repository</a> · <a href="https://www.youtube.com/watch?v=DE7pMZPA0jU">Watch case study</a></sub>
+    </td>
+  </tr>
 </table>
-
-### Research experiment
-
-<a href="https://www.youtube.com/watch?v=DE7pMZPA0jU"><img src="./assets/lovable-geo-dashboard.png" alt="Lovable GEO experiment dashboard" width="100%"></a>
-
-**Lovable GEO Experiment** — a reproducible case study of how persona and prompt context change brand visibility across language models. [Watch the case study](https://www.youtube.com/watch?v=DE7pMZPA0jU); the public research repository is in progress.
-
-### System taking shape
-
-- **LeadGen Framework** — an evidence-first framework for multi-channel lead discovery, qualification, pilot testing, and sales feedback loops.
 
 ## How I Build
 
