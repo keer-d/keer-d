@@ -2,35 +2,27 @@
 
 <p>
   <a href="https://studiokeer.com"><img alt="Portfolio" src="https://img.shields.io/badge/StudioKeer-Portfolio-17140f?style=flat-square"></a>
-  <a href="https://www.linkedin.com/in/keer-deng-/"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Keer%20Deng-17140f?style=flat-square&logo=linkedin&logoColor=white"></a>
+  <a href="https://www.linkedin.com/in/keer-deng-/"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Keer%20Dean-17140f?style=flat-square&logo=linkedin&logoColor=white"></a>
   <a href="mailto:keer.deng.paris@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-Let's%20talk-17140f?style=flat-square&logo=gmail&logoColor=white"></a>
 </p>
 
-![A small workshop of interconnected AI systems](./assets/ai-systems-workshop.png)
+I design practical AI workflow systems for messy, judgment-heavy work—and build personal AI tools to test what works in practice.
 
-AI workflow designer and operator building practical systems for messy, judgment-heavy work.
+**AI workflows · Personal AI systems · GEO experiments · Human-in-the-loop design**
 
-I tend to notice small frictions: a job search that repeats every morning, a sentence that interrupts the flow of reading, or a lead list nobody fully trusts.
-
-Then I start building.
-
-Some experiments become personal tools. Some grow into reusable workflows. The ones that last usually have the same shape: clear evidence, simple rules, AI where it helps, human judgment where it matters, and a feedback loop that makes the system better over time.
-
-I am currently exploring **AI workflow consulting**, **personal AI systems**, and how language models are changing the way people discover products and information.
-
-## Selected Systems
+## Selected Work
 
 <table>
   <tr>
     <td width="50%" valign="top">
       <a href="https://github.com/keer-d/fluentloop"><img src="./assets/fluentloop-cover.png" alt="FluentLoop personal AI learning system" width="100%"></a><br>
-      <b>FluentLoop</b><br>
+      <b><a href="https://github.com/keer-d/fluentloop">FluentLoop →</a></b><br>
       <sub>A local-first Chrome extension that turns webpages and video subtitles into a personal language-learning loop.</sub><br><br>
       <sub><a href="https://github.com/keer-d/fluentloop">Repository</a> · <a href="https://www.youtube.com/watch?v=Z0oLShLFesw">Watch demo</a></sub>
     </td>
     <td width="50%" valign="top">
       <a href="https://github.com/keer-d/career-os"><img src="./assets/career-os-cover.png" alt="CareerOS human-in-the-loop career workflow" width="100%"></a><br>
-      <b>CareerOS</b><br>
+      <b><a href="https://github.com/keer-d/career-os">CareerOS →</a></b><br>
       <sub>A privacy-safe case study of a daily workflow for job discovery, explainable matching, applications, and feedback.</sub><br><br>
       <sub><a href="https://github.com/keer-d/career-os">Repository</a> · Synthetic examples, real system design</sub>
     </td>
@@ -38,18 +30,26 @@ I am currently exploring **AI workflow consulting**, **personal AI systems**, an
   <tr>
     <td width="50%" valign="top">
       <a href="https://github.com/keer-d/leadgen-framework"><img src="./assets/leadgen-framework-cover.png" alt="LeadGen evidence-first operating framework" width="100%"></a><br>
-      <b>LeadGen Framework</b><br>
+      <b><a href="https://github.com/keer-d/leadgen-framework">LeadGen Framework →</a></b><br>
       <sub>A cross-industry framework for turning scattered channels into evidence-led discovery, qualification, review, and learning.</sub><br><br>
       <sub><a href="https://github.com/keer-d/leadgen-framework">Repository</a> · Generic templates and synthetic examples</sub>
     </td>
     <td width="50%" valign="top">
       <a href="https://github.com/keer-d/lovable-geo-experiment"><img src="./assets/lovable-geo-dashboard.png" alt="Lovable GEO experiment dashboard" width="100%"></a><br>
-      <b>Lovable GEO Experiment</b><br>
+      <b><a href="https://github.com/keer-d/lovable-geo-experiment">Lovable GEO Experiment →</a></b><br>
       <sub>A reproducible study of how persona and prompt context change brand visibility across 108 AI observations.</sub><br><br>
       <sub><a href="https://github.com/keer-d/lovable-geo-experiment">Repository</a> · <a href="https://www.youtube.com/watch?v=DE7pMZPA0jU">Watch case study</a></sub>
     </td>
   </tr>
 </table>
+
+## About
+
+I tend to notice small frictions: a job search that repeats every morning, a sentence that interrupts the flow of reading, or a lead list nobody fully trusts. Then I start building.
+
+Some experiments become personal tools. Some grow into reusable workflows. The ones that last usually have the same shape: clear evidence, simple rules, AI where it helps, human judgment where it matters, and a feedback loop that makes the system better over time.
+
+I am currently exploring **AI workflow consulting**, **personal AI systems**, and how language models are changing the way people discover products and information.
 
 ## How I Build
 
