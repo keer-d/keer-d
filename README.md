@@ -29,17 +29,22 @@ I am currently exploring **AI workflow consulting**, **personal AI systems**, an
       <sub><a href="https://github.com/keer-d/fluentloop">Repository</a> · <a href="https://www.youtube.com/watch?v=Z0oLShLFesw">Watch demo</a></sub>
     </td>
     <td width="50%" valign="top">
-      <a href="https://www.youtube.com/watch?v=DE7pMZPA0jU"><img src="./assets/lovable-geo-dashboard.png" alt="Lovable GEO experiment dashboard" width="100%"></a><br>
-      <b>Lovable GEO Experiment</b><br>
-      <sub>A reproducible case study of how persona and prompt context change brand visibility across language models.</sub><br><br>
-      <sub><a href="https://www.youtube.com/watch?v=DE7pMZPA0jU">Watch case study</a> · Public research repository in progress</sub>
+      <a href="https://github.com/keer-d/career-os"><img src="./assets/career-os-cover.png" alt="CareerOS human-in-the-loop career workflow" width="100%"></a><br>
+      <b>CareerOS</b><br>
+      <sub>A privacy-safe case study of a daily workflow for job discovery, explainable matching, applications, and feedback.</sub><br><br>
+      <sub><a href="https://github.com/keer-d/career-os">Repository</a> · Synthetic examples, real system design</sub>
     </td>
   </tr>
 </table>
 
-### Systems taking shape
+### Research experiment
 
-- **CareerOS** — a daily workflow for job discovery, explainable matching, applications, and feedback. A privacy-safe public case study is in progress.
+<a href="https://www.youtube.com/watch?v=DE7pMZPA0jU"><img src="./assets/lovable-geo-dashboard.png" alt="Lovable GEO experiment dashboard" width="100%"></a>
+
+**Lovable GEO Experiment** — a reproducible case study of how persona and prompt context change brand visibility across language models. [Watch the case study](https://www.youtube.com/watch?v=DE7pMZPA0jU); the public research repository is in progress.
+
+### System taking shape
+
 - **LeadGen Framework** — an evidence-first framework for multi-channel lead discovery, qualification, pilot testing, and sales feedback loops.
 
 ## How I Build
