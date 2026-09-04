@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Château La Tour Carnet 2019 — An Interactive Bottle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <div class="stage" id="stage">
+
+    <!-- ===================== CAMERA / BOTTLE ===================== -->
+    <div class="camera" id="camera">
+      <div class="turner" id="turner">
+        <figure class="face face--front">
+          <img id="imgFront" src="assets/bottle-front.jpg" alt="Château La Tour Carnet 2019 front label" draggable="false">
+        </figure>
+        <figure class="face face--back">
+          <img id="imgBack" src="assets/bottle-back.jpg" alt="Château La Tour Carnet 2019 back label" draggable="false">
+        </figure>
+      </div>
+      <div class="hotspots" id="hotspots"></div>
+    </div>
+
+    <div class="grade" aria-hidden="true"></div>
+    <div class="turnveil" id="turnveil" aria-hidden="true"></div>
+
+    <!-- ===================== SCENES ===================== -->
+    <div class="scenes" id="scenes">
+
+      <!-- ---------- TITLE ---------- -->
+      <section class="scene scene--title" data-scene="title">
+        <div class="title-block">
+          <p class="eyebrow" data-beat="1">Bordeaux · Left Bank</p>
+          <h1 class="wordmark" data-beat="1">Château<br>La Tour Carnet</h1>
+          <p class="sub" data-beat="1">Haut-Médoc · Grand Cru Classé en 1855 · 2019</p>
+        </div>
+        <p class="prompt-line" data-beat="1">Touch the label to begin<span class="cn">点击酒标开始</span></p>
+      </section>
+
+      <!-- ---------- ASK: WHERE ---------- -->
+      <section class="scene scene--ask" data-scene="ask-chateau">
+        <div class="ask">
+          <p class="ask-q" data-beat="1">Where is Château La Tour Carnet?</p>
+          <p class="ask-cn" data-beat="1">这座 Château 到底在哪里？</p>
+        </div>
+      </section>
+
+      <!-- ---------- MAP ---------- -->
+      <section class="scene scene--map" data-scene="map">
+        <header class="scene-head">
+          <p class="kicker" data-beat="1">The Question</p>
+          <h2 class="scene-title" data-beat="1">Where is it?</h2>
+        </header>
+
+        <!-- FRANCE -->
+        <div class="map-france" data-beat-range="1-1">
+          <svg viewBox="0 0 100 100" class="svg-france" role="img" aria-label="Map of France with Bordeaux highlighted">
+            <path class="fr-land" d="M58,4 L68,10 L76,14 L80,22 L77,32 L83,38 L88,46 L92,55 L86,62 L78,68 L66,70 L58,72 L48,76 L42,82 L32,80 L22,78 L18,70 L16,62 L14,54 L18,46 L14,40 L10,36 L6,30 L2,26 L8,22 L16,20 L24,18 L22,10 L28,14 L36,16 L44,12 L52,7 Z"/>
+            <path class="fr-land" d="M94,70 L97,74 L96,80 L93,78 L92,73 Z"/>
+            <circle class="fr-pulse" cx="20" cy="57" r="7"/>
+            <circle class="fr-dot" cx="20" cy="57" r="2.1"/>
+            <text class="fr-label" x="26" y="58">BORDEAUX</text>
+            <text class="fr-cap" x="72" y="24">FRANCE</text>
+          </svg>
+        </div>
+
+        <!-- BORDEAUX -->
+        <div class="map-bx" data-beat-range="2-4">
+          <svg viewBox="0 0 100 130" class="svg-bx" role="img" aria-label="Schematic map of Bordeaux, left bank and right bank">
+            <rect class="bx-ocean" x="-2" y="-2" width="18" height="134"/>
+            <path class="bx-land bx-left"  d="M16,-2 L28,-2 L49,66 L52,72 L62,84 L78,132 L16,132 Z"/>
+            <path class="bx-land bx-e2m"   d="M53,59 L100,50 L100,132 L78,132 L64,82 L55,67 Z"/>
+            <path class="bx-land bx-right" d="M42,-2 L102,-2 L102,44 L53,59 Z"/>
+            <path class="bx-water bx-gironde" d="M28,-2 L42,-2 L55,66 L49,66 Z"/>
+            <path class="bx-water" d="M49,66 L55,66 L64,82 L78,132 L71,132 L57,84 Z"/>
+            <path class="bx-water" d="M51,62 L53,58 L102,42 L102,47 Z"/>
+
+            <text class="bx-sea" x="7" y="30" transform="rotate(-90 7 30)">ATLANTIC</text>
+            <text class="bx-river" x="37" y="13" transform="rotate(72 37 13)">GIRONDE</text>
+
+            <g class="bx-side bx-side-left" data-beat="2">
+              <text class="bx-bank" x="20" y="96">LEFT BANK</text>
+              <text class="bx-bank-cn" x="20" y="103">左岸</text>
+            </g>
+            <g class="bx-side bx-side-right" data-beat="2">
+              <text class="bx-bank" x="71" y="17">RIGHT BANK</text>
+              <text class="bx-bank-cn" x="71" y="24">右岸</text>
+            </g>
+
+            <g class="bx-aoc bx-aoc-right" data-beat="3">
+              <circle cx="67" cy="33" r="0.9"/><text x="70" y="34">SAINT-ÉMILION</text>
+              <circle cx="63" cy="41" r="0.9"/><text x="66" y="42">POMEROL</text>
+            </g>
+
+            <g class="bx-aoc bx-aoc-left" data-beat="3">
+              <circle cx="24" cy="12" r="0.9"/><text x="27" y="13">MÉDOC</text>
+              <circle cx="28" cy="24" r="0.9"/><text x="31" y="25">SAINT-ESTÈPHE</text>
+              <circle cx="31" cy="32" r="0.9"/><text x="34" y="33">PAUILLAC</text>
+              <circle cx="33" cy="41" r="0.9"/><text x="36" y="42">SAINT-JULIEN</text>
+              <circle cx="40" cy="57" r="0.9"/><text x="43" y="58">MARGAUX</text>
+              <circle cx="52" cy="92" r="0.9"/><text x="55" y="93">GRAVES</text>
+            </g>
+
+            <g class="bx-hm" data-beat="4">
+              <path class="bx-hm-zone" d="M18,40 L32,35 L39,56 L36,70 L22,66 Z"/>
+              <text class="bx-hm-label" id="mapHautMedoc" x="19" y="63">HAUT-MÉDOC</text>
+            </g>
+
+            <g class="bx-pin" data-beat="4">
+              <circle class="bx-pin-halo" cx="25" cy="47" r="5"/>
+              <circle class="bx-pin-dot" cx="25" cy="47" r="1.5"/>
+            </g>
+          </svg>
+
+          <div class="bx-callout" data-beat="4">
+            <p class="bx-callout-name">Château La Tour Carnet</p>
+            <p class="bx-callout-meta">Saint-Laurent-Médoc · Haut-Médoc · Left Bank</p>
+            <p class="bx-callout-cn">左岸 · 上梅多克</p>
+          </div>
+          <p class="map-note" data-beat="2">Schematic map — regions shown by area, not to scale<span class="cn">示意地图，非精确坐标</span></p>
+        </div>
+      </section>
+
+      <!-- ---------- TERROIR ---------- -->
+      <section class="scene scene--terroir" data-scene="terroir">
+        <header class="scene-head">
+          <p class="kicker" data-beat="1">Left Bank</p>
+          <h2 class="scene-title" data-beat="1">Why does the<br>Left Bank matter?</h2>
+          <p class="scene-cn" data-beat="1">左岸凭什么？</p>
+        </header>
+
+        <div class="water" data-beat-range="2-2">
+          <svg viewBox="0 0 100 100" class="svg-water" role="img" aria-label="Atlantic and Gironde moderating influence">
+            <defs>
+              <marker id="ah" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,1 L7,4 L0,7 Z" fill="rgba(180,206,224,.9)"/>
+              </marker>
+            </defs>
+            <rect class="w-ocean" x="-2" y="-2" width="30" height="104"/>
+            <path class="w-land" d="M28,-2 L44,-2 L60,64 L67,102 L28,102 Z"/>
+            <path class="w-land w-land--right" d="M60,-2 L102,-2 L102,102 L73,102 L70,64 Z"/>
+            <path class="w-estuary" d="M44,-2 L60,-2 L70,64 L73,102 L67,102 L60,64 Z"/>
+            <g class="w-arrows">
+              <path class="w-arrow" d="M4,24 H34" marker-end="url(#ah)"/>
+              <path class="w-arrow" d="M4,44 H32" marker-end="url(#ah)"/>
+              <path class="w-arrow" d="M4,64 H30" marker-end="url(#ah)"/>
+              <path class="w-arrow" d="M4,84 H28" marker-end="url(#ah)"/>
+            </g>
+            <text class="w-tag" x="3" y="10">ATLANTIC</text>
+            <text class="w-tag" x="47" y="10">GIRONDE</text>
+            <text class="w-tag w-tag--land" x="31" y="90">MÉDOC</text>
+          </svg>
+          <ul class="terroir-list">
+            <li data-beat="2"><b>Atlantic Ocean</b><span>maritime influence<i>海洋性气候</i></span></li>
+            <li data-beat="2"><b>Gironde Estuary</b><span>temperature moderation<i>调节温度</i></span></li>
+          </ul>
+        </div>
+
+        <div class="soil" data-beat-range="3-6">
+          <svg viewBox="0 0 100 130" class="svg-soil" role="img" aria-label="Soil cross-section: gravel, clay, limestone">
+            <defs>
+              <pattern id="pGravel" width="11" height="11" patternUnits="userSpaceOnUse">
+                <circle cx="2.5" cy="3" r="1.5"/><circle cx="7.8" cy="7.4" r="2"/><circle cx="9.2" cy="1.6" r="1"/>
+                <circle cx="1" cy="8.8" r="1.2"/><circle cx="5.2" cy="10.4" r=".8"/>
+              </pattern>
+              <pattern id="pClay" width="12" height="8" patternUnits="userSpaceOnUse">
+                <path d="M0,4 Q3,1 6,4 T12,4"/>
+              </pattern>
+              <pattern id="pLime" width="14" height="9" patternUnits="userSpaceOnUse">
+                <path d="M0,0 H14 M0,4.5 H14 M4,0 V4.5 M11,4.5 V9"/>
+              </pattern>
+              <clipPath id="clipSoil"><rect x="0" y="28" width="100" height="102"/></clipPath>
+            </defs>
+
+            <defs><linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1c1410" stop-opacity="0"/><stop offset="1" stop-color="#1c1410" stop-opacity=".62"/>
+              </linearGradient></defs>
+            <g class="s-sky"><rect x="0" y="0" width="100" height="28" fill="url(#gSky)"/></g>
+            <g class="s-sun" data-beat="5">
+              <circle cx="78" cy="10" r="5"/>
+              <g class="s-rays"><path d="M78,0 V3"/><path d="M68,10 H71"/><path d="M85,10 H88"/><path d="M71,3 L73.5,5.5"/><path d="M85,3 L82.5,5.5"/></g>
+            </g>
+            <g class="s-vine">
+              <path class="s-trunk" d="M30,28 C30,21 28,17 30,11"/>
+              <path class="s-arm" d="M30,16 C24,14 20,16 17,13"/><path class="s-arm" d="M30,13.5 C36,12 40,13.5 44,11"/>
+              <circle class="s-leaf" cx="17" cy="13" r="2.1"/><circle class="s-leaf" cx="44" cy="11" r="2.1"/><circle class="s-leaf" cx="30" cy="10" r="1.9"/>
+            </g>
+
+            <g class="s-rain" data-beat="4">
+              <path d="M12,3 v5"/><path d="M24,0 v5"/><path d="M38,5 v5"/><path d="M52,1 v5"/><path d="M62,7 v5"/><path d="M19,11 v5"/><path d="M46,12 v5"/>
+            </g>
+
+            <g clip-path="url(#clipSoil)">
+              <rect class="s-layer s-gravel" x="0" y="28" width="100" height="36"/>
+              <rect class="s-tex" x="0" y="28" width="100" height="36" fill="url(#pGravel)"/>
+              <rect class="s-layer s-clay" x="0" y="64" width="100" height="33"/>
+              <rect class="s-tex s-tex-line" x="0" y="64" width="100" height="33" fill="url(#pClay)"/>
+              <rect class="s-layer s-lime" x="0" y="97" width="100" height="33"/>
+              <rect class="s-tex s-tex-line" x="0" y="97" width="100" height="33" fill="url(#pLime)"/>
+
+              <g class="s-drain" data-beat="4">
+                <path d="M14,30 C16,40 12,50 15,62"/><path d="M40,30 C42,42 38,52 41,63"/>
+                <path d="M66,30 C68,40 64,50 67,62"/><path d="M88,30 C90,42 86,50 89,62"/>
+              </g>
+              <g class="s-heat" data-beat="5">
+                <path d="M22,54 C24,46 20,40 23,32"/><path d="M50,56 C52,48 48,42 51,34"/><path d="M78,54 C80,46 76,40 79,32"/>
+              </g>
+              <g class="s-roots" data-beat="6">
+                <path d="M30,28 C30,42 26,50 28,62 C30,76 24,84 27,96 C29,108 26,114 28,124"/>
+                <path d="M29,50 C22,56 18,64 16,74"/>
+                <path d="M28,70 C36,78 40,86 42,96"/>
+                <path d="M27,92 C21,100 19,106 18,116"/>
+                <path d="M28,106 C34,112 36,118 37,124"/>
+              </g>
+            </g>
+
+            <g class="s-names">
+              <text class="s-name" x="4" y="39">GRAVEL / GRAVES</text><text class="s-name-cn" x="4" y="45.5">砾石</text>
+              <text class="s-name" x="4" y="75">CLAY</text><text class="s-name-cn" x="4" y="81.5">黏土</text>
+              <text class="s-name" x="4" y="108">LIMESTONE</text><text class="s-name-cn" x="4" y="114.5">石灰岩</text>
+            </g>
+          </svg>
+
+          <p class="soil-caption" data-beat-only="3">Now go underground<span class="cn">进入土壤剖面</span></p>
+          <p class="soil-caption" data-beat-only="4">Rain → gravel → drainage<span class="cn">雨水穿过砾石，快速排水</span></p>
+          <p class="soil-caption" data-beat-only="5">Gravel absorbs heat by day, releases it by night<span class="cn">砾石白天蓄热，夜间缓慢释放</span></p>
+          <p class="soil-caption" data-beat-only="6">So the roots go deeper<span class="cn">于是根系向下延伸</span></p>
+        </div>
+      </section>
+
+      <!-- ---------- APPELLATION ---------- -->
+      <section class="scene scene--appellation" data-scene="appellation">
+        <div class="app-block">
+          <p class="app-word" data-beat="1">HAUT-MÉDOC</p>
+          <p class="app-eq" data-beat="1">=</p>
+          <p class="app-def" data-beat="1">Appellation<span class="cn">产区</span></p>
+        </div>
+        <ul class="app-not" data-beat="2">
+          <li><s>Château name</s><i>不是酒庄名</i></li>
+          <li><s>Grape variety</s><i>不是葡萄品种</i></li>
+          <li><s>Vintage year</s><i>不是年份</i></li>
+        </ul>
+        <p class="app-backref" data-beat="3">On the back label<span class="cn">背标上写着</span><b>APPELLATION HAUT-MÉDOC CONTRÔLÉE</b></p>
+      </section>
+
+      <!-- ---------- VINTAGE 2019 ---------- -->
+      <section class="scene scene--vintage" data-scene="vintage">
+        <div class="v-head">
+          <p class="v-year" data-beat="1">2019</p>
+          <p class="v-terms" data-beat="1"><span>MILLÉSIME</span><span>VINTAGE</span><span>年份</span></p>
+        </div>
+
+        <div class="seasons" data-beat="2">
+          <div class="season" style="--i:0"><i class="s-ic s-ic--winter"></i><b>Winter</b><span>冬 · 休眠</span></div>
+          <div class="season" style="--i:1"><i class="s-ic s-ic--spring"></i><b>Spring</b><span>春 · 萌芽</span></div>
+          <div class="season" style="--i:2"><i class="s-ic s-ic--summer"></i><b>Summer</b><span>夏 · 转色</span></div>
+          <div class="season" style="--i:3"><i class="s-ic s-ic--harvest"></i><b>Harvest</b><span>秋 · 采收</span></div>
+        </div>
+
+        <ol class="chain" data-beat="3">
+          <li style="--i:0">Growing season</li>
+          <li style="--i:1">Grape maturity</li>
+          <li style="--i:2">Vendange <em>harvest</em></li>
+          <li style="--i:3">Vinification</li>
+          <li style="--i:4">Élevage <em>ageing</em></li>
+          <li style="--i:5">Bottle</li>
+        </ol>
+
+        <div class="v-point" data-beat="4">
+          <p class="v-yes">2019 = the year the grapes were <b>picked</b><span class="cn">2019 是採收年份</span></p>
+          <p class="v-no"><s>the year it was bottled</s><span class="cn">不是装瓶年份</span></p>
+          <p class="v-src">Back label: “The harvest began on September 21st, 2019.”</p>
+        </div>
+      </section>
+
+      <!-- ---------- 1855 ---------- -->
+      <section class="scene scene--c1855" data-scene="classification">
+        <div class="versus" data-beat-range="1-2">
+          <div class="vs-col" data-beat="1"><p class="vs-num">2019</p><p class="vs-lab" data-beat="2">VINTAGE<span class="cn">年份</span></p></div>
+          <div class="vs-bar" data-beat="1"></div>
+          <div class="vs-col" data-beat="1"><p class="vs-num">1855</p><p class="vs-lab" data-beat="2">CLASSIFICATION<span class="cn">分级</span></p></div>
+          <p class="vs-note" data-beat="2">Two numbers on one label. They are not the same kind of thing.<span class="cn">同一张酒标上的两个数字，意义完全不同。</span></p>
+        </div>
+
+        <div class="paris" data-beat-range="3-3">
+          <p class="paris-city">PARIS</p>
+          <p class="paris-event">Exposition Universelle</p>
+          <p class="paris-year">1855</p>
+          <p class="paris-body">Bordeaux brokers ranked the Médoc’s châteaux for the world’s fair.<span class="cn">1855 年巴黎世博会，波尔多经纪人为梅多克酒庄排定等级。</span></p>
+        </div>
+
+        <div class="ladder" data-beat-range="4-5">
+          <p class="ladder-head" data-beat="4">1855 Classification · Médoc</p>
+          <ol class="tiers">
+            <li data-tier="1" style="--i:0"><b>I</b><span>Premier Cru</span><i>5</i></li>
+            <li data-tier="2" style="--i:1"><b>II</b><span>Deuxième Cru</span><i>14</i></li>
+            <li data-tier="3" style="--i:2"><b>III</b><span>Troisième Cru</span><i>14</i></li>
+            <li data-tier="4" style="--i:3" id="tier4"><b>IV</b><span>Quatrième Cru</span><i>10</i></li>
+            <li data-tier="5" style="--i:4"><b>V</b><span>Cinquième Cru</span><i>18</i></li>
+          </ol>
+          <p class="ladder-foot" data-beat="4">61 châteaux today<span class="cn">今日共 61 家</span></p>
+          <div class="ladder-win" data-beat="5">
+            <p class="lw-name">CHÂTEAU LA TOUR CARNET</p>
+            <p class="lw-rank">QUATRIÈME CRU</p>
+            <p class="lw-cn">四级庄</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- TURN ---------- -->
+      <section class="scene scene--turn" data-scene="turn">
+        <p class="turn-cta" data-beat="1">TURN THE BOTTLE <span class="arrow">→</span><i class="cn">转到背面</i></p>
+      </section>
+
+      <!-- ---------- 1409 ---------- -->
+      <section class="scene scene--y1409" data-scene="y1409">
+        <div class="y-head" data-beat-range="1-1">
+          <p class="y-fr">Première vendange en 1409</p>
+          <p class="y-eq">=</p>
+          <p class="y-cn">第一次葡萄采收：1409</p>
+          <p class="y-en">First harvest, 1409</p>
+        </div>
+
+        <div class="tl" data-beat-range="2-2">
+          <p class="tl-head" data-beat="2">One bottle, six centuries</p>
+          <ol class="tl-list">
+            <li style="--i:0" data-beat="2"><b>1120</b><span>Castle built</span><i>La Tour Carnet a été édifiée en 1120 — printed on the front label</i></li>
+            <li style="--i:1" data-beat="2"><b>1409</b><span>Première vendange</span><i>First recorded harvest — back label</i></li>
+            <li style="--i:2" data-beat="2"><b>1855</b><span>Grand Cru Classé</span><i>Quatrième Cru, Médoc classification</i></li>
+            <li style="--i:3" data-beat="2"><b>c. 2000</b><span>Bernard Magrez</span><i>Estate acquired around 1999–2000 · to confirm</i></li>
+            <li style="--i:4" data-beat="2"><b>2019</b><span>This vintage</span><i>Harvest began 21 September 2019</i></li>
+            <li style="--i:5" data-beat="2"><b>Today</b><span>We read the bottle</span><i>我们正在读这瓶酒</i></li>
+          </ol>
+        </div>
+
+        <div class="three" data-beat-range="3-3">
+          <p class="three-head" data-beat="3">Three years on one bottle<span class="cn">同一瓶酒上的三个年份</span></p>
+          <div class="three-rail" data-beat="3">
+            <span class="tr-line"></span>
+            <div class="tr-node" style="--i:0"><b>1409</b><i>HISTORY</i><s>酒庄历史</s></div>
+            <div class="tr-node" style="--i:1"><b>1855</b><i>CLASSIFICATION</i><s>分级</s></div>
+            <div class="tr-node" style="--i:2"><b>2019</b><i>VINTAGE</i><s>年份</s></div>
+            <div class="tr-node" style="--i:3"><b>Today</b><i>TODAY</i><s>此刻</s></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- MIS EN BOUTEILLE ---------- -->
+      <section class="scene scene--bottled" data-scene="bottled">
+        <div class="mb">
+          <p class="mb-fr" data-beat="1">MIS EN BOUTEILLE<br>AU CHÂTEAU</p>
+          <p class="mb-cn" data-beat="1">在酒庄装瓶</p>
+          <p class="mb-en" data-beat="1">Bottled at the estate</p>
+        </div>
+      </section>
+
+      <!-- ---------- RÉCOLTE 2019 ---------- -->
+      <section class="scene scene--recolte" data-scene="recolte">
+        <div class="rc" data-beat-range="2-2">
+          <div class="rc-row"><span class="rc-side">FRONT LABEL<i>正标</i></span><b class="rc-val">2019</b></div>
+          <span class="rc-link">↕</span>
+          <div class="rc-row"><span class="rc-side">BACK LABEL<i>背标</i></span><b class="rc-val">Récolte 2019</b></div>
+          <p class="rc-note">The two labels are telling you the same thing.<span class="cn">正标和背标互相印证。</span></p>
+        </div>
+      </section>
+
+      <!-- ---------- GRAPES ---------- -->
+      <section class="scene scene--grapes" data-scene="grapes">
+        <header class="scene-head">
+          <p class="kicker" data-beat="1">Inside the bottle</p>
+          <h2 class="scene-title" data-beat="1">What is actually<br>in the bottle?</h2>
+        </header>
+        <ul class="grapes" data-beat="2">
+          <li style="--i:0"><i class="berry berry--cs"></i><b>Cabernet Sauvignon</b><span>赤霞珠</span></li>
+          <li style="--i:1"><i class="berry berry--me"></i><b>Merlot</b><span>梅洛</span></li>
+          <li style="--i:2"><i class="berry berry--cf"></i><b>Cabernet Franc</b><span>品丽珠</span></li>
+          <li style="--i:3"><i class="berry berry--pv"></i><b>Petit Verdot</b><span>小维铎</span></li>
+        </ul>
+        <p class="grapes-note" data-beat="2">Red varieties permitted in Haut-Médoc<span class="cn">上梅多克允许的主要红葡萄品种</span></p>
+        <p class="grapes-verify" data-beat="3">2019 exact blend — to verify<span class="cn">本年份具体比例待核实</span></p>
+      </section>
+
+      <!-- ---------- FINALE ---------- -->
+      <section class="scene scene--finale" data-scene="finale">
+        <ul class="gather" data-beat-range="1-1">
+          <li style="--i:0">Map</li><li style="--i:1">Terroir</li><li style="--i:2">1855</li>
+          <li style="--i:3">1409</li><li style="--i:4">2019</li><li style="--i:5">Haut-Médoc</li>
+        </ul>
+        <div class="fin-years" data-beat-range="2-2"><span style="--i:0">1409</span><span style="--i:1">1855</span><span style="--i:2">2019</span></div>
+        <div class="fin-card" data-beat-range="3-3">
+          <p class="fin-name">CHÂTEAU<br>LA TOUR CARNET</p>
+          <p class="fin-aoc">HAUT-MÉDOC</p>
+          <p class="fin-year">2019</p>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ===================== CHROME ===================== -->
+    <div class="chrome" id="chrome">
+      <div class="rail"><i id="railFill"></i></div>
+      <p class="chapter" id="chapterLabel"></p>
+      <button class="backhome" id="backHome" type="button">
+        <span class="bh-arrow">←</span> Back to bottle <i>回到酒瓶</i>
+      </button>
+      <p class="advance" id="advanceHint">click / →</p>
+    </div>
+
+    <div class="helpcard" id="helpCard" hidden>
+      <p class="hc-title">Presenter keys</p>
+      <ul>
+        <li><b>→ / Space / click</b><span>next</span></li>
+        <li><b>←</b><span>previous</span></li>
+        <li><b>B / Esc</b><span>back to bottle</span></li>
+        <li><b>F</b><span>fullscreen</span></li>
+        <li><b>H</b><span>hide hotspots &amp; chrome</span></li>
+        <li><b>R</b><span>reset</span></li>
+        <li><b>?</b><span>this card</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
