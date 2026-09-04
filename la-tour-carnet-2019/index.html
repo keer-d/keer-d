@@ -70,59 +70,102 @@
         </div>
 
         <!-- BORDEAUX -->
-        <div class="map-bx" data-beat-range="2-4">
-          <svg viewBox="0 0 100 130" class="svg-bx" role="img" aria-label="Schematic map of Bordeaux, left bank and right bank">
-            <rect class="bx-ocean" x="-2" y="-2" width="18" height="134"/>
-            <path class="bx-land bx-left"  d="M16,-2 L28,-2 L49,66 L52,72 L62,84 L78,132 L16,132 Z"/>
-            <path class="bx-land bx-e2m"   d="M53,59 L100,50 L100,132 L78,132 L64,82 L55,67 Z"/>
-            <path class="bx-land bx-right" d="M42,-2 L102,-2 L102,44 L53,59 Z"/>
-            <path class="bx-water bx-gironde" d="M28,-2 L42,-2 L55,66 L49,66 Z"/>
-            <path class="bx-water" d="M49,66 L55,66 L64,82 L78,132 L71,132 L57,84 Z"/>
-            <path class="bx-water" d="M51,62 L53,58 L102,42 L102,47 Z"/>
+        <div class="map-bx" data-beat-range="2-7">
+          <svg viewBox="0 0 100 128" class="svg-bx" role="img" aria-label="Schematic map of the Médoc peninsula and the Gironde estuary">
+            <defs>
+              <marker id="flowHead" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="4.5" markerHeight="4.5" orient="auto">
+                <path d="M0,1 L7,4 L0,7 Z" fill="rgba(180,206,224,.95)"/>
+              </marker>
+            </defs>
 
-            <text class="bx-sea" x="7" y="30" transform="rotate(-90 7 30)">ATLANTIC</text>
-            <text class="bx-river" x="37" y="13" transform="rotate(72 37 13)">GIRONDE</text>
+            <rect class="bx-ocean" x="-2" y="-2" width="18" height="132"/>
+            <path class="bx-land bx-left"  d="M16,-2 L32,-2 L54,88 L62,130 L16,130 Z"/>
+            <path class="bx-land bx-right" d="M54,-2 L102,-2 L102,58 L57,83 Z"/>
+            <path class="bx-land bx-e2m"   d="M60,88 L102,65 L102,130 L68,130 Z"/>
+            <path class="bx-water bx-gironde" d="M32,-2 L54,-2 L60,88 L54,88 Z"/>
+            <path class="bx-water" d="M54,88 L60,88 L68,130 L62,130 Z"/>
+            <path class="bx-water" d="M60,88 L57,83 L102,58 L102,65 Z"/>
+
+            <text class="bx-sea" x="8" y="42" transform="rotate(-90 8 42)">ATLANTIC</text>
+            <text class="bx-river" x="40" y="14" transform="rotate(80 40 14)">GIRONDE</text>
 
             <g class="bx-side bx-side-left" data-beat="2">
-              <text class="bx-bank" x="20" y="96">LEFT BANK</text>
-              <text class="bx-bank-cn" x="20" y="103">左岸</text>
+              <text class="bx-bank" x="34" y="116">LEFT BANK</text>
+              <text class="bx-bank-cn" x="34" y="123">左岸</text>
             </g>
             <g class="bx-side bx-side-right" data-beat="2">
-              <text class="bx-bank" x="71" y="17">RIGHT BANK</text>
-              <text class="bx-bank-cn" x="71" y="24">右岸</text>
+              <text class="bx-bank" x="78" y="22">RIGHT BANK</text>
+              <text class="bx-bank-cn" x="78" y="29">右岸</text>
             </g>
 
             <g class="bx-aoc bx-aoc-right" data-beat="3">
-              <circle cx="67" cy="33" r="0.9"/><text x="70" y="34">SAINT-ÉMILION</text>
-              <circle cx="63" cy="41" r="0.9"/><text x="66" y="42">POMEROL</text>
+              <circle cx="68" cy="48" r="0.9"/><text x="71" y="49">SAINT-ÉMILION</text>
+              <circle cx="62" cy="55" r="0.9"/><text x="65" y="56">POMEROL</text>
             </g>
-
             <g class="bx-aoc bx-aoc-left" data-beat="3">
-              <circle cx="24" cy="12" r="0.9"/><text x="27" y="13">MÉDOC</text>
-              <circle cx="28" cy="24" r="0.9"/><text x="31" y="25">SAINT-ESTÈPHE</text>
-              <circle cx="31" cy="32" r="0.9"/><text x="34" y="33">PAUILLAC</text>
-              <circle cx="33" cy="41" r="0.9"/><text x="36" y="42">SAINT-JULIEN</text>
-              <circle cx="40" cy="57" r="0.9"/><text x="43" y="58">MARGAUX</text>
-              <circle cx="52" cy="92" r="0.9"/><text x="55" y="93">GRAVES</text>
+              <circle cx="44" cy="106" r="0.9"/><text x="47" y="107">GRAVES</text>
             </g>
 
-            <g class="bx-hm" data-beat="4">
-              <path class="bx-hm-zone" d="M18,40 L32,35 L39,56 L36,70 L22,66 Z"/>
-              <text class="bx-hm-label" id="mapHautMedoc" x="19" y="63">HAUT-MÉDOC</text>
+            <!-- one peninsula, two appellations: Médoc north, Haut-Médoc south -->
+            <g class="bx-zones" data-beat="4">
+              <path class="bx-zone bx-zone--medoc" d="M24,2 L32.9,2 L43,45 L24,45 Z"/>
+              <path class="bx-zone bx-zone--haut"  d="M24,45 L43.5,45 L54,88 L55,94 L24,94 Z"/>
+              <text class="bx-zone-label" x="26" y="25">MÉDOC</text>
+              <text class="bx-zone-sub" x="26" y="31">north 北</text>
+              <text class="bx-zone-label bx-zone-label--haut" id="mapHautMedoc" x="25" y="64">HAUT-MÉDOC</text>
+              <text class="bx-zone-sub bx-zone-sub--haut" x="26" y="70">south 南</text>
+              <text class="bx-quest" x="63" y="74">?</text>
             </g>
 
-            <g class="bx-pin" data-beat="4">
-              <circle class="bx-pin-halo" cx="25" cy="47" r="5"/>
-              <circle class="bx-pin-dot" cx="25" cy="47" r="1.5"/>
+            <!-- the estuary runs out to the ocean, so "up" is the other way -->
+            <g class="bx-flow" data-beat="5">
+              <path class="bx-flow-line" d="M56,80 C51,58 46,34 42,8" marker-end="url(#flowHead)"/>
+              <g class="bx-node bx-node--down">
+                <circle cx="43" cy="4" r="1.2"/>
+                <text x="47" y="5">DOWNSTREAM</text>
+                <text class="bx-node-cn" x="47" y="10">下游 · 大西洋</text>
+              </g>
+              <g class="bx-node bx-node--up">
+                <circle cx="59" cy="92" r="1.4"/>
+                <text x="63" y="91">BORDEAUX</text>
+                <text class="bx-node-cn" x="63" y="96">上游 · UPSTREAM</text>
+              </g>
+            </g>
+
+            <g class="bx-pin" data-beat="7">
+              <circle class="bx-pin-halo" cx="33" cy="78" r="5"/>
+              <circle class="bx-pin-dot" cx="33" cy="78" r="1.5"/>
             </g>
           </svg>
 
-          <div class="bx-callout" data-beat="4">
+          <p class="map-note" data-beat="2">Schematic map — regions shown by area, not to scale<span class="cn">示意地图，非精确边界</span></p>
+
+          <p class="bx-ask" data-beat-only="4">
+            <b>Haut</b> means high, upper.<span>So why is Haut-Médoc <i>south</i> of Médoc?</span>
+            <span class="cn">Haut 是「上」。那为什么 Haut-Médoc 在 Médoc 南边？</span>
+          </p>
+
+          <p class="bx-ask" data-beat-only="5">
+            The estuary flows from Bordeaux out to the Atlantic.
+            <span class="cn">吉伦特河口从波尔多流向大西洋。</span>
+          </p>
+
+          <div class="bx-callout" data-beat="7">
             <p class="bx-callout-name">Château La Tour Carnet</p>
             <p class="bx-callout-meta">Saint-Laurent-Médoc · Haut-Médoc · Left Bank</p>
             <p class="bx-callout-cn">左岸 · 上梅多克</p>
           </div>
-          <p class="map-note" data-beat="2">Schematic map — regions shown by area, not to scale<span class="cn">示意地图，非精确坐标</span></p>
+        </div>
+
+        <!-- the punchline: haut is a river word, not a compass word -->
+        <div class="haut-card" data-beat-range="6-6">
+          <p class="hc-line hc-line--no"><s>HAUT = NORTH</s><i>不是地图的「上」</i></p>
+          <p class="hc-eq">=</p>
+          <p class="hc-line hc-line--yes">HAUT = UPSTREAM<i>是河的上游</i></p>
+          <p class="hc-body">
+            Named from the estuary, not the compass. The upstream half — the half nearer Bordeaux — is the <em>haut</em> one.
+            <span class="cn">这个「上」指的是吉伦特河口的上游，靠近波尔多的那一半，而不是地图的北边。</span>
+          </p>
         </div>
       </section>
 
@@ -246,6 +289,28 @@
           <li><s>Vintage year</s><i>不是年份</i></li>
         </ul>
         <p class="app-backref" data-beat="3">On the back label<span class="cn">背标上写着</span><b>APPELLATION HAUT-MÉDOC CONTRÔLÉE</b></p>
+
+        <!-- Haut-Médoc is not a neighbour of the village appellations. It contains them. -->
+        <div class="contains" data-beat-range="4-5">
+          <p class="ct-head" data-beat="4">Haut-Médoc is not next to the famous villages.<b>It contains them.</b><span class="cn">上梅多克不是村庄级产区的邻居，而是把它们包在里面。</span></p>
+          <div class="ct-box" data-beat="4">
+            <p class="ct-box-title">AOC HAUT-MÉDOC</p>
+            <ul class="ct-list">
+              <li style="--i:0">Saint-Estèphe</li>
+              <li style="--i:1">Pauillac</li>
+              <li style="--i:2">Saint-Julien</li>
+              <li style="--i:3">Listrac-Médoc</li>
+              <li style="--i:4">Moulis</li>
+              <li style="--i:5">Margaux</li>
+            </ul>
+            <p class="ct-box-note">six communal appellations inside it<span class="cn">内含六个村庄级产区</span></p>
+            <div class="ct-here" data-beat="5">
+              <p class="ct-here-name">Saint-Laurent-Médoc</p>
+              <p class="ct-here-why">no communal appellation of its own<span class="cn">没有自己的村庄级产区</span></p>
+              <p class="ct-here-so">so the label reads <b>HAUT-MÉDOC</b><span class="cn">所以酒标写的是上梅多克</span></p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- ---------- VINTAGE 2019 ---------- -->

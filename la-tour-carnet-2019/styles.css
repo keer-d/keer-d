@@ -214,9 +214,10 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 
 /* ---------- MAP ---------- */
 .scene--map{justify-content:flex-start}
-.map-france,.map-bx{position:absolute;left:0;right:0;top:calc(var(--u)*30);bottom:calc(var(--u)*10);
+.map-france{position:absolute;left:0;right:0;top:calc(var(--u)*30);bottom:calc(var(--u)*10);
   display:flex;flex-direction:column;align-items:center;justify-content:center}
-.map-bx{justify-content:flex-start}
+.map-bx{position:absolute;left:0;right:0;top:calc(var(--u)*30);bottom:calc(var(--u)*30);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
 .svg-france{width:74%;height:auto;overflow:visible}
 .fr-land{fill:rgba(243,233,217,.055);stroke:rgba(243,233,217,.5);stroke-width:.5;
   stroke-linejoin:round;stroke-linecap:round}
@@ -227,7 +228,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 .fr-label{fill:var(--gold-lt);font-family:var(--sans);font-size:3.4px;letter-spacing:.3px}
 .fr-cap{fill:var(--dim-2);font-family:var(--sans);font-size:3px;letter-spacing:1.1px}
 
-.svg-bx{width:84%;height:auto;overflow:visible}
+.svg-bx{width:88%;height:auto;overflow:visible}
 .bx-ocean{fill:rgba(60,96,120,.30)}
 .bx-land{fill:rgba(243,233,217,.035);stroke:none}
 .bx-left,.bx-right{transition:fill 700ms ease}
@@ -239,6 +240,9 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 .scene--map[data-b="4"] .bx-right{fill:rgba(124,27,47,.05)}
 .bx-water{fill:rgba(70,112,140,.55)}
 .bx-sea,.bx-river{fill:rgba(180,206,224,.5);font-family:var(--sans);font-size:2.6px;letter-spacing:1.2px}
+.bx-river{transition:opacity 500ms ease}
+.scene--map[data-b="5"] .bx-river,.scene--map[data-b="6"] .bx-river,
+.scene--map[data-b="7"] .bx-river{opacity:0}
 .bx-bank{fill:var(--ivory);font-family:var(--sans);font-size:3.4px;letter-spacing:1.1px;text-anchor:middle}
 .bx-bank-cn{fill:var(--dim);font-family:var(--sans);font-size:3px;letter-spacing:1.4px;text-anchor:middle}
 .bx-side-right .bx-bank{fill:#e7a9b4}
@@ -246,16 +250,97 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 .bx-aoc text{fill:var(--dim);font-family:var(--sans);font-size:2.5px;letter-spacing:.5px;dominant-baseline:middle}
 .bx-hm-zone{fill:rgba(200,162,74,.22);stroke:var(--gold);stroke-width:.35;stroke-dasharray:1.6 1.2}
 .bx-hm-label{fill:var(--gold-lt);font-family:var(--sans);font-size:3.2px;letter-spacing:.6px;font-weight:500}
-.bx-pin-halo{fill:none;stroke:var(--gold);stroke-width:.4;transform-origin:25px 47px;animation:frPulse 2.6s ease-out infinite}
+.bx-pin-halo{fill:none;stroke:var(--gold);stroke-width:.4;transform-origin:33px 78px;animation:frPulse 2.6s ease-out infinite}
 .bx-pin-dot{fill:var(--gold-lt)}
 .bx-pin-leader{stroke:var(--hair);stroke-width:.3;stroke-dasharray:1 1.4}
-.bx-callout{position:absolute;left:calc(var(--u)*8);right:calc(var(--u)*8);bottom:calc(var(--u)*1);text-align:left}
+.bx-callout{position:absolute;left:calc(var(--u)*8);right:calc(var(--u)*8);bottom:calc(var(--u)*-19);text-align:left}
 .bx-callout-name{margin:0;font-family:var(--serif);font-size:calc(var(--u)*5.2);color:var(--gold-lt)}
 .bx-callout-meta{margin:calc(var(--u)*.6) 0 0;font-size:calc(var(--u)*2.3);letter-spacing:.16em;color:var(--ivory)}
 .bx-callout-cn{margin:calc(var(--u)*.5) 0 0;font-size:calc(var(--u)*2.2);letter-spacing:.2em;color:var(--dim)}
 .map-note{position:absolute;left:calc(var(--u)*8);right:calc(var(--u)*8);top:calc(var(--u)*-4.5);
   margin:0;font-size:calc(var(--u)*1.85);letter-spacing:.08em;color:var(--dim-2)}
 .map-note .cn{display:inline;margin-left:.6em}
+
+/* Médoc peninsula: two zones, not two neighbours */
+.bx-zone{stroke:rgba(200,162,74,.5);stroke-width:.35;stroke-dasharray:2 1.6}
+.bx-zone--medoc{fill:rgba(243,233,217,.05)}
+.bx-zone--haut{fill:rgba(200,162,74,.13)}
+.bx-zone-label{fill:var(--dim);font-family:var(--sans);font-size:3.4px;letter-spacing:.5px}
+.bx-zone-label--haut{fill:var(--gold-lt);font-weight:500;font-size:3.2px}
+.bx-zone-sub{fill:var(--dim-2);font-family:var(--sans);font-size:2.4px;letter-spacing:1px}
+.bx-zone-sub--haut{fill:rgba(200,162,74,.7)}
+.bx-quest{fill:var(--gold);font-family:var(--serif);font-size:13px;opacity:.75}
+.scene--map[data-b="4"] .bx-quest{animation:breathe 2.4s ease-in-out infinite}
+.scene--map[data-b="5"] .bx-quest,.scene--map[data-b="6"] .bx-quest,.scene--map[data-b="7"] .bx-quest{opacity:0}
+
+/* the estuary's direction of travel */
+.bx-flow-line{fill:none;stroke:rgba(180,206,224,.9);stroke-width:.9;stroke-linecap:round;
+  stroke-dasharray:170;stroke-dashoffset:170}
+.scene--map[data-b="5"] .bx-flow-line,.scene--map[data-b="6"] .bx-flow-line,
+.scene--map[data-b="7"] .bx-flow-line{animation:drawFlow 2.4s var(--cam-ease) forwards}
+@keyframes drawFlow{to{stroke-dashoffset:0}}
+.bx-node circle{fill:var(--gold-lt)}
+.bx-node text{fill:var(--ivory);font-family:var(--sans);font-size:2.8px;letter-spacing:.7px;dominant-baseline:middle}
+.bx-node .bx-node-cn{fill:var(--dim);font-size:2.4px;letter-spacing:.9px}
+.bx-node--up text{fill:var(--gold-lt)}
+
+.bx-ask{position:absolute;left:calc(var(--u)*8);right:calc(var(--u)*8);bottom:calc(var(--u)*-18);
+  margin:0;text-align:center;font-family:var(--serif);font-size:calc(var(--u)*3.2);color:var(--ivory);line-height:1.5}
+.bx-ask b{color:var(--gold-lt);font-weight:400}
+.bx-ask i{font-style:italic;color:var(--gold-lt)}
+.bx-ask span{display:block}
+.bx-ask .cn{font-family:var(--sans);font-size:calc(var(--u)*2.1);color:var(--dim);letter-spacing:.1em;margin-top:.5em}
+
+/* HAUT is a river word, not a compass word */
+.haut-card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:0 calc(var(--u)*8);background:radial-gradient(80% 56% at 50% 46%, rgba(7,5,4,.97), rgba(7,5,4,.90) 72%, rgba(7,5,4,.82) 100%)}
+.scene--map[data-b="6"] .svg-bx{opacity:.16}
+.scene--map[data-b="6"] .map-note{opacity:0}
+.scene--map[data-b="6"] .scene-head{opacity:.18}
+.svg-bx,.map-note,.scene-head{transition:opacity 600ms ease}
+.hc-line{margin:0;font-family:var(--sans);font-size:calc(var(--u)*5.4);letter-spacing:.14em}
+.hc-line--no s{color:var(--dim-2);text-decoration-color:var(--burg-lt);text-decoration-thickness:2px}
+.hc-line--yes{color:var(--gold-lt)}
+.hc-line i{display:block;font-style:normal;font-family:var(--sans);font-size:calc(var(--u)*2.3);
+  letter-spacing:.24em;color:var(--dim);margin-top:.6em}
+.hc-eq{margin:calc(var(--u)*3) 0;font-size:calc(var(--u)*3.4);color:var(--dim-2)}
+.hc-body{margin:calc(var(--u)*6) 0 0;text-align:center;font-family:var(--serif);
+  font-size:calc(var(--u)*3.1);line-height:1.6;color:var(--dim)}
+.hc-body em{font-style:italic;color:var(--gold-lt)}
+.hc-body .cn{font-family:var(--sans);font-size:calc(var(--u)*2.1);letter-spacing:.1em;margin-top:.8em}
+
+/* Haut-Médoc contains the six communal appellations */
+.contains{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--u)*10) calc(var(--u)*8)}
+.app-block,.app-not,.app-backref{transition:opacity 500ms ease}
+.scene--appellation[data-b="4"] .app-block,.scene--appellation[data-b="5"] .app-block,
+.scene--appellation[data-b="4"] .app-not,.scene--appellation[data-b="5"] .app-not,
+.scene--appellation[data-b="4"] .app-backref,.scene--appellation[data-b="5"] .app-backref{opacity:0}
+.scene--appellation[data-b="4"]::before,.scene--appellation[data-b="5"]::before{
+  background:radial-gradient(82% 56% at 50% 48%, rgba(7,5,4,.95), rgba(7,5,4,.86) 72%, rgba(7,5,4,.78) 100%)}
+.ct-head{margin:0 0 calc(var(--u)*4);text-align:center;font-family:var(--serif);
+  font-size:calc(var(--u)*3.6);line-height:1.45;color:var(--dim)}
+.ct-head b{display:block;color:var(--ivory);font-weight:400;font-size:calc(var(--u)*4.6);margin-top:.25em}
+.ct-head .cn{font-family:var(--sans);font-size:calc(var(--u)*2.1);letter-spacing:.1em;margin-top:.7em}
+.ct-box{position:relative;border:1px dashed var(--gold);border-radius:calc(var(--u)*1.2);
+  padding:calc(var(--u)*4.4) calc(var(--u)*3) calc(var(--u)*3);
+  background:linear-gradient(180deg, rgba(200,162,74,.09), rgba(200,162,74,.02))}
+.ct-box-title{position:absolute;top:calc(var(--u)*-1.5);left:50%;transform:translateX(-50%);
+  margin:0;padding:0 calc(var(--u)*1.6);background:#0a0706;white-space:nowrap;
+  font-size:calc(var(--u)*2.3);letter-spacing:.3em;color:var(--gold-lt)}
+.ct-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*1.4)}
+.ct-list li{padding:calc(var(--u)*1.2) calc(var(--u)*1.4);border:1px solid rgba(243,233,217,.13);
+  border-radius:calc(var(--u)*.5);font-family:var(--serif);font-size:calc(var(--u)*3);color:var(--ivory);
+  text-align:center;transition-delay:calc(var(--i)*70ms)}
+.ct-box-note{margin:calc(var(--u)*2.2) 0 0;text-align:center;font-size:calc(var(--u)*2);
+  letter-spacing:.14em;color:var(--dim-2)}
+.ct-box-note .cn{display:inline;margin-left:.6em}
+.ct-here{margin-top:calc(var(--u)*3);padding-top:calc(var(--u)*2.6);border-top:1px solid var(--hair);text-align:center}
+.ct-here-name{margin:0;font-family:var(--serif);font-size:calc(var(--u)*4.2);color:var(--gold-lt)}
+.ct-here-why{margin:calc(var(--u)*.8) 0 0;font-size:calc(var(--u)*2.1);letter-spacing:.1em;color:var(--dim-2)}
+.ct-here-so{margin:calc(var(--u)*1.6) 0 0;font-size:calc(var(--u)*2.4);letter-spacing:.08em;color:var(--dim)}
+.ct-here-so b{color:var(--gold-lt);letter-spacing:.16em}
+.ct-here-why .cn,.ct-here-so .cn{font-size:calc(var(--u)*1.9);margin-top:.4em}
 
 /* ---------- TERROIR ---------- */
 .water,.soil{position:absolute;left:0;right:0;top:calc(var(--u)*46);bottom:calc(var(--u)*14);

@@ -11,7 +11,7 @@ that word → back to bottle → click the next word
 ```
 
 Front label opens four chapters, the bottle turns, the back label opens four more.
-Fifty-one presenter beats, roughly eight to nine minutes at a talking pace.
+Fifty-six presenter beats, roughly nine to ten minutes at a talking pace.
 
 ---
 
@@ -190,6 +190,15 @@ Context added by the deck:
 - The classification lists **61 châteaux today**: 5 first, 14 second, 14 third,
   10 fourth, 18 fifth growths. It was drawn up for the 1855 Paris Exposition
   Universelle and originally covered 58 estates.
+- **`Haut` is a river word, not a compass word.** Haut-Médoc lies *south* of
+  Médoc on the map, because the name comes from the Gironde estuary: the
+  upstream half, nearer Bordeaux, is the *haut* one. The estuary flows from
+  Bordeaux out to the Atlantic, so upstream runs the opposite way from north.
+  The convention comes from the river traffic that carried the wine.
+- **Haut-Médoc contains the six communal appellations** — Saint-Estèphe,
+  Pauillac, Saint-Julien, Listrac-Médoc, Moulis and Margaux. It is not their
+  neighbour. Château La Tour Carnet sits in Saint-Laurent-Médoc, which has no
+  communal appellation of its own, which is why the label reads Haut-Médoc.
 
 Two things are deliberately left open rather than invented:
 
@@ -202,7 +211,11 @@ Two things are deliberately left open rather than invented:
 
 The Bordeaux map is schematic and labelled as such on screen. Regions are placed
 by area and relative position, not by coordinates, and the château pin marks its
-commune rather than the estate itself.
+commune rather than the estate itself. The Médoc and Haut-Médoc zones are drawn
+as indicative areas inset from the coast — real appellation boundaries are not
+straight lines, and the deck never claims otherwise. Because Haut-Médoc contains
+the six communal appellations rather than sitting beside them, that relationship
+is shown as a nested diagram in the appellation chapter, not as shapes on the map.
 
 ---
 
