@@ -4,22 +4,112 @@
    ========================================================= */
 
 :root{
-  --ink:#0a0706;
-  --ink-2:#150d0a;
+  /* ---------- DARK: the palette while the bottle is on screen ---------- */
+  --surround:#000;                        /* outside the 9:16 frame */
+  --paper:#070504;                        /* the ground behind scene content */
+  --ivory:#f3e9d9;                        /* primary text */
+  --dim:rgba(243,233,217,.60);            /* secondary text */
+  --dim-2:rgba(243,233,217,.34);          /* tertiary text */
+  --tint-faint:rgba(243,233,217,.06);     /* barely-there fills */
+  --tint-soft:rgba(243,233,217,.11);      /* hairline borders */
+  --tint-line:rgba(243,233,217,.5);       /* map strokes */
+
+  --gold:#c8a24a;                         /* quiet accent */
+  --gold-lt:#e6cb87;                      /* loud accent */
+  --hair:rgba(200,162,74,.34);
   --burg:#4c0f1e;
   --burg-lt:#7d1b2f;
-  --gold:#c8a24a;
-  --gold-lt:#e6cb87;
-  --ivory:#f3e9d9;
-  --dim:rgba(243,233,217,.60);
-  --dim-2:rgba(243,233,217,.34);
-  --hair:rgba(200,162,74,.34);
+
+  --scrim-1:rgba(7,5,4,.97);              /* overlay scrims, strongest first */
+  --scrim-2:rgba(7,5,4,.88);
+  --scrim-3:rgba(7,5,4,.79);
+  --scrim-4:rgba(7,5,4,.30);
+  --scrim-0:rgba(7,5,4,0);
+
+  --panel:rgba(10,7,6,.42);
+  --panel-solid:rgba(10,7,6,.94);
+  --panel-hot:rgba(76,15,30,.6);
+
+  --vig-1:rgba(0,0,0,.42);                /* vignette */
+  --vig-2:rgba(0,0,0,.82);
+  --vig-3:rgba(0,0,0,.55);
+  --vig-4:rgba(0,0,0,.72);
+  --grain:.055;
 
   --serif:"Cormorant Garamond","Times New Roman",Georgia,"Songti SC",serif;
   --sans:"Jost","Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",sans-serif;
 
   --cam-ease:cubic-bezier(.22,1,.36,1);
   --cam-dur:1400ms;
+}
+
+/* =========================================================
+   LIGHT THEME
+   The frame is white and the knowledge pages are printed on
+   warm paper. The bottle itself is a photograph shot in a dark
+   room, so the beats where it is present keep the cinematic
+   palette — the deck brightens the moment the bottle recedes.
+   ========================================================= */
+body.theme-light{
+  --surround:#ffffff;
+  --paper:#f7f2e8;
+  --ivory:#1e1611;
+  --dim:rgba(30,22,17,.66);
+  --dim-2:rgba(30,22,17,.46);
+  --tint-faint:rgba(30,22,17,.05);
+  --tint-soft:rgba(30,22,17,.14);
+  --tint-line:rgba(30,22,17,.45);
+
+  --gold:#9a7a2c;
+  --gold-lt:#6d5214;
+  --hair:rgba(154,122,44,.48);
+  --burg:#7a1828;
+  --burg-lt:#95233a;
+
+  --scrim-1:rgba(247,242,232,.97);
+  --scrim-2:rgba(247,242,232,.90);
+  --scrim-3:rgba(247,242,232,.80);
+  --scrim-4:rgba(247,242,232,.35);
+  --scrim-0:rgba(247,242,232,0);
+
+  --panel:rgba(255,255,255,.72);
+  --panel-solid:rgba(255,255,255,.96);
+  --panel-hot:rgba(122,24,40,.12);
+
+  --vig-1:rgba(70,52,32,.05);
+  --vig-2:rgba(70,52,32,.14);
+  --vig-3:rgba(70,52,32,.08);
+  --vig-4:rgba(70,52,32,.12);
+  --grain:.03;
+}
+
+/* While the bottle is in frame the photograph rules the palette,
+   so those beats stay light-on-dark even in the light theme. */
+body.theme-light[data-dim="0"],
+body.theme-light[data-dim="1"]{
+  --paper:#0a0706;
+  --ivory:#f3e9d9;
+  --dim:rgba(243,233,217,.62);
+  --dim-2:rgba(243,233,217,.36);
+  --tint-faint:rgba(243,233,217,.06);
+  --tint-soft:rgba(243,233,217,.11);
+  --tint-line:rgba(243,233,217,.5);
+  --gold:#c8a24a;
+  --gold-lt:#e6cb87;
+  --hair:rgba(200,162,74,.34);
+  --burg-lt:#7d1b2f;
+  --scrim-1:rgba(7,5,4,.97);
+  --scrim-2:rgba(7,5,4,.88);
+  --scrim-3:rgba(7,5,4,.79);
+  --scrim-4:rgba(7,5,4,.30);
+  --scrim-0:rgba(7,5,4,0);
+  --panel:rgba(10,7,6,.42);
+  --panel-solid:rgba(10,7,6,.94);
+  --panel-hot:rgba(76,15,30,.6);
+  --vig-1:rgba(0,0,0,.20);
+  --vig-2:rgba(0,0,0,.46);
+  --vig-3:rgba(0,0,0,.34);
+  --vig-4:rgba(0,0,0,.44);
 }
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -35,8 +125,7 @@ img{display:block;max-width:100%}
 #app{
   position:fixed;inset:0;
   display:grid;place-items:center;
-  background:
-    radial-gradient(120% 80% at 50% 0%, #16100d 0%, #000 70%);
+  background:var(--surround);
 }
 
 /* ---------- the 9:16 stage ---------- */
@@ -46,10 +135,11 @@ img{display:block;max-width:100%}
   width:min(100vw, calc(100vh * 9 / 16));
   height:min(100vh, calc(100vw * 16 / 9));
   overflow:hidden;
-  background:#070504;
+  background:var(--paper);
   cursor:pointer;
   user-select:none;
-  box-shadow:0 0 calc(var(--u)*12) rgba(0,0,0,.9);
+  box-shadow:var(--stage-shadow, 0 0 calc(var(--u)*12) rgba(0,0,0,.9));
+  transition:background 700ms ease;
   font-size:var(--u);
 }
 @media (display-mode:fullscreen){ .stage{box-shadow:none} }
@@ -95,11 +185,11 @@ body[data-dim="2"] .camera{opacity:.075;filter:blur(calc(var(--u)*.9)) saturate(
 .grade::before{
   content:"";position:absolute;inset:0;
   background:
-    radial-gradient(78% 58% at 50% 46%, transparent 40%, rgba(0,0,0,.42) 78%, rgba(0,0,0,.82) 100%),
-    linear-gradient(180deg, rgba(0,0,0,.55) 0%, transparent 22%, transparent 74%, rgba(0,0,0,.72) 100%);
+    radial-gradient(78% 58% at 50% 46%, transparent 40%, var(--vig-1) 78%, var(--vig-2) 100%),
+    linear-gradient(180deg, var(--vig-3) 0%, transparent 22%, transparent 74%, var(--vig-4) 100%);
 }
 .grade::after{
-  content:"";position:absolute;inset:-20%;opacity:.055;mix-blend-mode:overlay;
+  content:"";position:absolute;inset:-20%;opacity:var(--grain);mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
   animation:grain 7s steps(6) infinite;
 }
@@ -112,6 +202,62 @@ body[data-dim="2"] .camera{opacity:.075;filter:blur(calc(var(--u)*.9)) saturate(
   position:absolute;inset:0;pointer-events:none;opacity:0;
   background:radial-gradient(60% 50% at 50% 50%, rgba(0,0,0,.55), rgba(0,0,0,.95));
 }
+
+/* ---------- light theme: elements that cannot simply invert ---------- */
+
+/* a soft drop shadow reads better than a black glow against white */
+body.theme-light{--stage-shadow:0 calc(var(--u)*1.4) calc(var(--u)*7) rgba(60,45,30,.22),
+                                0 0 0 1px rgba(60,45,30,.10)}
+
+/* the bottle ghost behind a bright page wants less blur, not more */
+body.theme-light[data-dim="2"] .camera{opacity:.11;
+  filter:blur(calc(var(--u)*1.2)) saturate(.22) brightness(.36) contrast(.8)}
+body.theme-light[data-dim="1"] .camera{opacity:.34}
+
+/* soil labels sit ON the dark earth layers, so they stay light in both themes */
+body.theme-light .s-name{fill:#f4eee2}
+body.theme-light .s-name-cn{fill:rgba(244,238,226,.72)}
+body.theme-light .s-roots path{stroke:rgba(238,214,176,.95)}
+
+/* water on paper: deepen the blues so the labels hold up */
+body.theme-light .bx-ocean{fill:rgba(96,132,158,.30)}
+body.theme-light .bx-water{fill:rgba(104,144,172,.62)}
+body.theme-light .bx-sea,body.theme-light .bx-river{fill:rgba(34,64,88,.72)}
+body.theme-light .w-ocean{fill:rgba(96,132,158,.32)}
+body.theme-light .w-estuary{fill:rgba(104,144,172,.62)}
+body.theme-light .w-tag{fill:rgba(34,64,88,.78)}
+body.theme-light .w-arrow{stroke:rgba(38,74,102,.85)}
+body.theme-light .bx-node text{fill:var(--ivory)}
+body.theme-light .bx-flow-line{stroke:rgba(38,74,102,.9)}
+body.theme-light .s-rain path,body.theme-light .s-drain path{stroke:rgba(52,92,124,.9)}
+body.theme-light .s-heat path{stroke:rgba(176,92,40,.9)}
+body.theme-light .s-sun circle{fill:rgba(198,150,52,.9)}
+body.theme-light .s-rays path{stroke:rgba(198,150,52,.85)}
+
+/* the right bank rose needs weight against paper */
+body.theme-light .bx-side-right .bx-bank{fill:#9c3247}
+body.theme-light .bx-land{fill:rgba(30,22,17,.045)}
+body.theme-light .fr-land{fill:rgba(30,22,17,.05);stroke:rgba(30,22,17,.45)}
+
+/* the turn silhouette stays dark — that is the physical illusion */
+body.theme-light .turnveil{background:radial-gradient(60% 50% at 50% 50%, rgba(0,0,0,.55), rgba(0,0,0,.95))}
+
+/* lift the photograph's shadows without clipping the cream label */
+body.theme-light .face img{filter:saturate(1.05) contrast(.94) brightness(1.09)}
+
+/* dimmed rows need more ink on paper than they needed light on black */
+body.theme-light .scene--c1855[data-b="5"] .tiers li{opacity:.42}
+
+/* chrome needs real edges once the ground is white */
+body.theme-light .backhome{background:#fff;border-color:rgba(30,22,17,.20);color:#5c4410;
+  box-shadow:0 calc(var(--u)*.3) calc(var(--u)*1.4) rgba(60,45,30,.14)}
+body.theme-light .backhome i{color:rgba(30,22,17,.45)}
+body.theme-light .rail{background:rgba(30,22,17,.07)}
+body.theme-light .rail i{background:linear-gradient(90deg,#9c3247,#9a7a2c)}
+body.theme-light .map-note{color:rgba(30,22,17,.52)}
+body.theme-light .helpcard{border-color:rgba(30,22,17,.18);
+  box-shadow:0 calc(var(--u)*1) calc(var(--u)*4) rgba(60,45,30,.18)}
+body.theme-light .helpcard b{color:#1e1611}
 
 /* ---------- hotspots (live inside the camera) ---------- */
 .hotspots{position:absolute;inset:0}
@@ -219,7 +365,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 .map-bx{position:absolute;left:0;right:0;top:calc(var(--u)*30);bottom:calc(var(--u)*30);
   display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
 .svg-france{width:74%;height:auto;overflow:visible}
-.fr-land{fill:rgba(243,233,217,.055);stroke:rgba(243,233,217,.5);stroke-width:.5;
+.fr-land{fill:var(--tint-faint);stroke:var(--tint-line);stroke-width:.5;
   stroke-linejoin:round;stroke-linecap:round}
 .fr-dot{fill:var(--gold)}
 .fr-pulse{fill:none;stroke:var(--gold);stroke-width:.4;opacity:.6;transform-origin:20px 57px;
@@ -230,7 +376,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 
 .svg-bx{width:88%;height:auto;overflow:visible}
 .bx-ocean{fill:rgba(60,96,120,.30)}
-.bx-land{fill:rgba(243,233,217,.035);stroke:none}
+.bx-land{fill:var(--tint-faint);stroke:none}
 .bx-left,.bx-right{transition:fill 700ms ease}
 .scene--map[data-b="2"] .bx-left,
 .scene--map[data-b="3"] .bx-left,
@@ -263,7 +409,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 
 /* Médoc peninsula: two zones, not two neighbours */
 .bx-zone{stroke:rgba(200,162,74,.5);stroke-width:.35;stroke-dasharray:2 1.6}
-.bx-zone--medoc{fill:rgba(243,233,217,.05)}
+.bx-zone--medoc{fill:var(--tint-faint)}
 .bx-zone--haut{fill:rgba(200,162,74,.13)}
 .bx-zone-label{fill:var(--dim);font-family:var(--sans);font-size:3.4px;letter-spacing:.5px}
 .bx-zone-label--haut{fill:var(--gold-lt);font-weight:500;font-size:3.2px}
@@ -293,7 +439,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 
 /* HAUT is a river word, not a compass word */
 .haut-card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:0 calc(var(--u)*8);background:radial-gradient(80% 56% at 50% 46%, rgba(7,5,4,.97), rgba(7,5,4,.90) 72%, rgba(7,5,4,.82) 100%)}
+  padding:0 calc(var(--u)*8);background:radial-gradient(80% 56% at 50% 46%, var(--scrim-1), var(--scrim-2) 72%, var(--scrim-3) 100%)}
 .scene--map[data-b="6"] .svg-bx{opacity:.16}
 .scene--map[data-b="6"] .map-note{opacity:0}
 .scene--map[data-b="6"] .scene-head{opacity:.18}
@@ -317,7 +463,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 .scene--appellation[data-b="4"] .app-not,.scene--appellation[data-b="5"] .app-not,
 .scene--appellation[data-b="4"] .app-backref,.scene--appellation[data-b="5"] .app-backref{opacity:0}
 .scene--appellation[data-b="4"]::before,.scene--appellation[data-b="5"]::before{
-  background:radial-gradient(82% 56% at 50% 48%, rgba(7,5,4,.95), rgba(7,5,4,.86) 72%, rgba(7,5,4,.78) 100%)}
+  background:radial-gradient(82% 56% at 50% 48%, var(--scrim-1), var(--scrim-2) 72%, var(--scrim-3) 100%)}
 .ct-head{margin:0 0 calc(var(--u)*4);text-align:center;font-family:var(--serif);
   font-size:calc(var(--u)*3.6);line-height:1.45;color:var(--dim)}
 .ct-head b{display:block;color:var(--ivory);font-weight:400;font-size:calc(var(--u)*4.6);margin-top:.25em}
@@ -326,10 +472,10 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
   padding:calc(var(--u)*4.4) calc(var(--u)*3) calc(var(--u)*3);
   background:linear-gradient(180deg, rgba(200,162,74,.09), rgba(200,162,74,.02))}
 .ct-box-title{position:absolute;top:calc(var(--u)*-1.5);left:50%;transform:translateX(-50%);
-  margin:0;padding:0 calc(var(--u)*1.6);background:#0a0706;white-space:nowrap;
+  margin:0;padding:0 calc(var(--u)*1.6);background:var(--paper);white-space:nowrap;
   font-size:calc(var(--u)*2.3);letter-spacing:.3em;color:var(--gold-lt)}
 .ct-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*1.4)}
-.ct-list li{padding:calc(var(--u)*1.2) calc(var(--u)*1.4);border:1px solid rgba(243,233,217,.13);
+.ct-list li{padding:calc(var(--u)*1.2) calc(var(--u)*1.4);border:1px solid var(--tint-soft);
   border-radius:calc(var(--u)*.5);font-family:var(--serif);font-size:calc(var(--u)*3);color:var(--ivory);
   text-align:center;transition-delay:calc(var(--i)*70ms)}
 .ct-box-note{margin:calc(var(--u)*2.2) 0 0;text-align:center;font-size:calc(var(--u)*2);
@@ -373,7 +519,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 .s-rays path{stroke:rgba(230,203,135,.7);stroke-width:.7;stroke-linecap:round}
 .s-trunk,.s-arm{stroke:rgba(150,116,80,.85);stroke-width:1.2;fill:none;stroke-linecap:round}
 .s-leaf{fill:rgba(122,142,98,.6)}
-.s-layer{stroke:rgba(243,233,217,.10);stroke-width:.25}
+.s-layer{stroke:var(--tint-soft);stroke-width:.25}
 .s-gravel{fill:#2f2822}.s-clay{fill:#3e2d26}.s-lime{fill:#454133}
 .s-tex{opacity:.7}
 #pGravel circle{fill:rgba(214,202,184,.17)}
@@ -408,13 +554,13 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 /* ---------- APPELLATION ---------- */
 .scene--appellation{justify-content:center;text-align:center}
 .scene--appellation::before{content:"";position:absolute;inset:0;z-index:-1;
-  background:radial-gradient(72% 46% at 50% 42%, rgba(7,5,4,.86), rgba(7,5,4,.30) 70%, rgba(7,5,4,0) 100%)}
+  background:radial-gradient(72% 46% at 50% 42%, var(--scrim-2), var(--scrim-4) 70%, var(--scrim-0) 100%)}
 .app-word{margin:0;font-family:var(--sans);font-size:calc(var(--u)*7.2);letter-spacing:.14em;color:var(--gold-lt)}
 .app-eq{margin:calc(var(--u)*1.4) 0;font-size:calc(var(--u)*4);color:var(--dim-2)}
 .app-def{margin:0;font-family:var(--serif);font-size:calc(var(--u)*8.4);font-weight:300}
 .app-def .cn{font-family:var(--sans);font-size:calc(var(--u)*3);letter-spacing:.3em;margin-top:.5em}
 .app-not{list-style:none;margin:calc(var(--u)*7) 0 0;padding:0;display:grid;gap:calc(var(--u)*2)}
-.app-not li{padding:calc(var(--u)*1.6) 0;border-top:1px solid rgba(243,233,217,.10)}
+.app-not li{padding:calc(var(--u)*1.6) 0;border-top:1px solid var(--tint-soft)}
 .app-not s{font-family:var(--serif);font-size:calc(var(--u)*4);color:var(--dim-2);text-decoration-color:var(--burg-lt)}
 .app-not i{display:block;font-style:normal;font-size:calc(var(--u)*2.1);letter-spacing:.2em;color:var(--dim-2);margin-top:.3em}
 .app-backref{margin:calc(var(--u)*6) 0 0;font-size:calc(var(--u)*2.2);letter-spacing:.18em;color:var(--dim)}
@@ -475,7 +621,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 .ladder-head{margin:0 0 calc(var(--u)*3);font-size:calc(var(--u)*2.3);letter-spacing:.28em;color:var(--gold);text-transform:uppercase}
 .tiers{list-style:none;margin:0;padding:0;display:grid;gap:calc(var(--u)*1.2)}
 .tiers li{display:grid;grid-template-columns:calc(var(--u)*7) 1fr auto;align-items:center;gap:calc(var(--u)*2);
-  padding:calc(var(--u)*1.6) calc(var(--u)*2);border:1px solid rgba(243,233,217,.10);
+  padding:calc(var(--u)*1.6) calc(var(--u)*2);border:1px solid var(--tint-soft);
   border-radius:calc(var(--u)*.5);transition:all 600ms var(--cam-ease);transition-delay:calc(var(--i)*90ms)}
 .tiers b{font-family:var(--serif);font-size:calc(var(--u)*4.4);color:var(--dim-2);font-weight:400}
 .tiers span{font-family:var(--serif);font-size:calc(var(--u)*3.6);color:var(--dim)}
@@ -528,7 +674,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
   background:linear-gradient(90deg,transparent,var(--gold),var(--gold),transparent)}
 .tr-node{position:relative;text-align:center;padding-top:calc(var(--u)*5.4);transition-delay:calc(var(--i)*160ms)}
 .tr-node::before{content:"";position:absolute;left:50%;top:calc(var(--u)*1.75);width:calc(var(--u)*1.4);height:calc(var(--u)*1.4);
-  margin-left:calc(var(--u)*-.7);border-radius:50%;background:var(--gold-lt);box-shadow:0 0 0 calc(var(--u)*.5) rgba(10,7,6,1)}
+  margin-left:calc(var(--u)*-.7);border-radius:50%;background:var(--gold-lt);box-shadow:0 0 0 calc(var(--u)*.5) var(--paper)}
 .tr-node b{display:block;font-family:var(--serif);font-size:calc(var(--u)*3.9);font-weight:400}
 .tr-node i{display:block;font-style:normal;font-size:calc(var(--u)*1.6);letter-spacing:.18em;color:var(--gold);margin-top:.5em}
 .tr-node s{display:block;text-decoration:none;font-size:calc(var(--u)*1.8);letter-spacing:.14em;color:var(--dim-2);margin-top:.35em}
@@ -554,7 +700,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 .scene--grapes{justify-content:center}
 .grapes{list-style:none;margin:calc(var(--u)*2) 0 0;padding:0;display:grid;gap:calc(var(--u)*2.4)}
 .grapes li{display:flex;align-items:center;gap:calc(var(--u)*3);padding:calc(var(--u)*1.6) 0;
-  border-bottom:1px solid rgba(243,233,217,.09);transition-delay:calc(var(--i)*120ms)}
+  border-bottom:1px solid var(--tint-faint);transition-delay:calc(var(--i)*120ms)}
 .berry{flex:0 0 auto;width:calc(var(--u)*7);height:calc(var(--u)*7);border-radius:50%;position:relative;
   box-shadow:inset 0 calc(var(--u)*-.6) calc(var(--u)*1.4) rgba(0,0,0,.55),
              inset 0 calc(var(--u)*.4) calc(var(--u)*1) rgba(255,255,255,.14)}
@@ -581,14 +727,14 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 @keyframes gatherIn{from{opacity:0;transform:translateY(calc(var(--u)*2.2)) scale(.97)}to{opacity:.85;transform:none}}
 .fin-years{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:calc(var(--u)*4)}
 .fin-years::before{content:"";position:absolute;left:0;right:0;top:38%;height:24%;
-  background:radial-gradient(60% 100% at 50% 50%, rgba(7,5,4,.78), rgba(7,5,4,0) 75%)}
+  background:radial-gradient(60% 100% at 50% 50%, var(--scrim-3), var(--scrim-0) 75%)}
 .fin-years span{position:relative}
 .fin-years span{font-family:var(--serif);font-size:calc(var(--u)*7);color:var(--gold-lt);opacity:0;
   animation:yearFade 3.4s ease forwards;animation-delay:calc(var(--i)*260ms);animation-play-state:paused}
 .fin-years.range-on span{animation-play-state:running}
 @keyframes yearFade{0%{opacity:0}25%{opacity:1}70%{opacity:1}100%{opacity:0}}
 .fin-card{position:absolute;left:0;right:0;top:calc(var(--u)*13);padding:calc(var(--u)*5) calc(var(--u)*6);
-  background:radial-gradient(70% 100% at 50% 42%, rgba(7,5,4,.80), rgba(7,5,4,0) 72%)}
+  background:radial-gradient(70% 100% at 50% 42%, var(--scrim-3), var(--scrim-0) 72%)}
 .fin-name{margin:0;font-family:var(--serif);font-weight:300;font-size:calc(var(--u)*7.4);line-height:1.14}
 .fin-aoc{margin:calc(var(--u)*3.2) 0 0;font-size:calc(var(--u)*2.6);letter-spacing:.42em;color:var(--gold-lt)}
 .fin-year{margin:calc(var(--u)*2.4) 0 0;font-family:var(--serif);font-size:calc(var(--u)*5);color:var(--dim)}
@@ -603,7 +749,7 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 
 /* ---------- chrome ---------- */
 .chrome{position:absolute;inset:0;pointer-events:none;transition:opacity 400ms ease}
-.rail{position:absolute;left:0;right:0;top:0;height:2px;background:rgba(243,233,217,.07)}
+.rail{position:absolute;left:0;right:0;top:0;height:2px;background:var(--tint-faint)}
 .rail i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--burg-lt),var(--gold));
   transition:width 700ms var(--cam-ease)}
 .chapter{position:absolute;left:calc(var(--u)*8);top:calc(var(--u)*4);margin:0;
@@ -611,14 +757,14 @@ body.hs-hidden .chrome{opacity:0!important;pointer-events:none!important}
 .backhome{
   position:absolute;left:50%;bottom:calc(var(--u)*5);transform:translateX(-50%);
   pointer-events:auto;cursor:pointer;
-  background:rgba(10,7,6,.42);border:1px solid var(--hair);color:var(--gold-lt);
+  background:var(--panel);border:1px solid var(--hair);color:var(--gold-lt);
   border-radius:999px;padding:calc(var(--u)*1.3) calc(var(--u)*3.2);
   font-family:var(--sans);font-size:calc(var(--u)*2);letter-spacing:.26em;text-transform:uppercase;
   opacity:0;visibility:hidden;transition:opacity 460ms ease,visibility 0s linear 460ms,background 240ms ease;
   backdrop-filter:blur(calc(var(--u)*.6));
 }
 .backhome i{font-style:normal;margin-left:.8em;color:var(--dim-2);letter-spacing:.2em}
-.backhome:hover{background:rgba(76,15,30,.6)}
+.backhome:hover{background:var(--panel-hot)}
 body.show-back .backhome{opacity:1;visibility:visible;transition:opacity 460ms ease}
 .advance{position:absolute;right:calc(var(--u)*8);bottom:calc(var(--u)*5);margin:0;
   font-size:calc(var(--u)*1.8);letter-spacing:.28em;color:var(--dim-2);text-transform:uppercase;
@@ -627,7 +773,7 @@ body.show-back .advance,body.is-last .advance{opacity:0;animation:none}
 
 .helpcard{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:90;
-  background:rgba(10,7,6,.94);border:1px solid var(--hair);border-radius:calc(var(--u)*1);
+  background:var(--panel-solid);border:1px solid var(--hair);border-radius:calc(var(--u)*1);
   padding:calc(var(--u)*4) calc(var(--u)*5);backdrop-filter:blur(calc(var(--u)*1.4));
 }
 .hc-title{margin:0 0 calc(var(--u)*2.4);font-size:calc(var(--u)*2.2);letter-spacing:.3em;color:var(--gold);text-transform:uppercase}

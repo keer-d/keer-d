@@ -43,6 +43,7 @@ Nothing plays automatically. Every beat waits for you.
 | `F` | toggle fullscreen |
 | `H` | hide every hotspot and all on-screen chrome |
 | `R` `Home` | reset to the opening bottle |
+| `T` | light / dark theme |
 | `End` | jump to the final beat |
 | `?` | show the key card |
 
@@ -51,6 +52,24 @@ present out of order. Swipe left and right works on a phone or tablet.
 
 `H` is the one to remember before you hit record on a take where you want the
 label completely clean.
+
+### Light and dark
+
+The deck ships **light**, and the theme follows the bottle rather than being one
+flat choice:
+
+- **Beats where the bottle is in frame stay dark and cinematic.** The photographs
+  were shot in a dark room, so a bright page behind a dark bottle would only look
+  broken. These beats do get an opened-up vignette and a shadow lift, so the glass
+  and the engraving read far better than a crushed black frame.
+- **Beats where the bottle recedes turn into a bright printed page** — warm paper,
+  ink-dark type, the map and the soil section and the classification ladder sitting
+  on it like an atlas spread. The bottle stays as a faint watermark behind them.
+- **Outside the 9:16 column the screen is pure white**, so the frame reads as a
+  card on a page while you work.
+
+`T` toggles the whole thing to the original all-dark treatment, and the choice is
+remembered across reloads so a recording session keeps whichever you picked.
 
 ---
 

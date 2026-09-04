@@ -490,7 +490,23 @@
   }
 
   /* -------------------------------------------------------
-     10. PRESENTER CONTROLS
+     10. THEME
+     Light is the default: white surround, warm paper under every
+     knowledge page. The beats where the bottle is in frame keep the
+     cinematic palette, because the photograph was shot in a dark room.
+     ------------------------------------------------------- */
+  function applyTheme(light) {
+    body.classList.toggle('theme-light', !!light);
+    try { localStorage.setItem('ltc-theme', light ? 'light' : 'dark'); } catch (e) {}
+  }
+  function toggleTheme() { applyTheme(!body.classList.contains('theme-light')); }
+
+  var savedTheme = 'light';
+  try { savedTheme = localStorage.getItem('ltc-theme') || 'light'; } catch (e) {}
+  applyTheme(savedTheme === 'light');
+
+  /* -------------------------------------------------------
+     11. PRESENTER CONTROLS
      ------------------------------------------------------- */
   stage.addEventListener('click', function (e) {
     if (e.target.closest('.hotspot') || e.target.closest('.backhome')) return;
@@ -515,6 +531,7 @@
     else if (k === 'f' || k === 'F') { toggleFullscreen(); }
     else if (k === 'h' || k === 'H') { body.classList.toggle('hs-hidden'); }
     else if (k === 'r' || k === 'R') { go(0); }
+    else if (k === 't' || k === 'T') { toggleTheme(); }
     else if (k === '?' || k === '/') { helpEl.hidden = !helpEl.hidden; }
     else if (k === 'Home') { go(0); }
     else if (k === 'End') { go(STEPS.length - 1); }
@@ -539,7 +556,7 @@
   window.addEventListener('orientationchange', function () { setTimeout(measure, 220); });
 
   /* -------------------------------------------------------
-     11. BOOT
+     12. BOOT
      ------------------------------------------------------- */
   buildHotspots();
   measure();
@@ -548,6 +565,7 @@
 
   /* expose for tinkering from the console */
   window.LTC = {
-    go: go, step: function () { return STEPS[idx]; }, steps: STEPS, hotspots: HOTSPOTS
+    go: go, step: function () { return STEPS[idx]; }, steps: STEPS, hotspots: HOTSPOTS,
+    theme: applyTheme
   };
 })();
